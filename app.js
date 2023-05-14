@@ -9,15 +9,21 @@ app.listen(3000, function () {
 
 app.get('/', (req, res) => {
     // res.send('<h1>Running...</h1>');
-    res.sendFile('./views/index.html', { root: __dirname })
+    // res.sendFile('./views/index.html', { root: __dirname })
+    res.render('index', { title: 'Index' });
 
 })
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname })
+    // res.sendFile('./views/about.html', { root: __dirname })
+    res.render('about', { title: 'About' });
 })
-app.get('/aboutUS', (req, res) => {
+app.get('/create', (req, res) => {
+    // res.sendFile('./views/about.html', { root: __dirname })
+    res.render('createblog', { title: 'CreateBlog' });
+})
+app.get('/aboutus', (req, res) => {
     res.redirect('/about');
 })
 app.use((req, res) => {
-    res.status(404).sendFile('./views/404.html', { root: __dirname });
+    res.status(404).render('404', { title: '404 Error' });
 })
