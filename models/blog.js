@@ -18,7 +18,7 @@ const blogSchema = new Schema(
         },
     },
     {
-        timestamps: true
+        timestamps: { currentTime: () => Date.now() },
     }
 );
 
