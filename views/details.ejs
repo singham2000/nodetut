@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/cdns.ejs')%>
+        <title>
+            <%= blog.title%>
+        </title>
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs')%>
+        <center>
+            <div class="card text-center w-50 mt-5">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= blog.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= blog.blogBody %>
+                    </p>
+                    <a data-doc="<%= blog._id%>" class="btn btn-primary">Delete blog</a>
+                </div>
+                <div class="card-footer text-body-secondary">
+                    2 days ago
+                </div>
+            </div>
+        </center>
+        <%- include('../partials/footer.ejs')%>
+</body>
+
+</html>
