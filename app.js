@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 const Blogs = require('./models/blog');
+const { result } = require('lodash');
 
 // connect mongodb
 const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.sbunmxg.mongodb.net/blogs?retryWrites=true&w=majority`;
@@ -86,6 +87,17 @@ app.post('/blogs', (req, res) => {
 
 //Ends................................................................
 
+// Delete requests
+
+app.delete('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    Blogs.findByIdAndDelete(id).then((result) => {
+        res.json({ redirect: '/' });
+    }).catch((err) => console.log(err))
+
+})
+
+//Ends................................................................
 
 app.get('/aboutus', (req, res) => {
     res.redirect('/about');
