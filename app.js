@@ -10,6 +10,9 @@ const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWOR
 
 app.set('view engine', 'ejs');
 
+//encoders
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }))
 
 try {
     mongoose.connect(dbURI).then((res) => {
@@ -50,7 +53,9 @@ app.get('/single-blog', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Index' });
+    Blogs.find().then((result) => {
+        res.render('index', { title: 'Index', blogs: result });
+    }).catch((err) => console.log(err));
 
 })
 app.get('/about', (req, res) => {
@@ -58,8 +63,30 @@ app.get('/about', (req, res) => {
     res.render('about', { title: 'About' });
 })
 app.get('/create', (req, res) => {
-    res.render('createblog', { title: 'CreateBlog' });
+    res.render('createblog', { title: 'Create Blog' });
 })
+
+app.get('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    // console.log(id);
+    Blogs.findById(id).then((result) => {
+        res.render('details', { title: result.title, blog: result });
+    }).catch((err) => console.log(err));
+})
+
+
+//post requests
+app.post('/blogs', (req, res) => {
+    // console.log(req.body);
+    const blog = new Blogs(req.body);
+    blog.save().then((result) => {
+        res.redirect('/');
+    }).catch((err) => console.log(err));
+})
+
+//Ends................................................................
+
+
 app.get('/aboutus', (req, res) => {
     res.redirect('/about');
 })
