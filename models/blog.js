@@ -8,17 +8,21 @@ const blogSchema = new Schema(
             type: String,
             required: true
         },
-        preview: {
+        previewText: {
             type: String,
             required: true
         },
-        body: {
+        blogBody: {
             type: String,
             required: true
         },
+        author: {
+            type: String,
+            required: true
+        }
     },
     {
-        timestamps: true
+        timestamps: { currentTime: () => Date.now() },
     }
 );
 
