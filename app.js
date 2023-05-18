@@ -6,7 +6,7 @@ require('dotenv').config()
 const Blogs = require('./models/blog');
 
 // connect mongodb
-const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.sbunmxg.mongodb.net/?retryWrites=true&w=majority`;
+const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.sbunmxg.mongodb.net/blogs?retryWrites=true&w=majority`;
 
 app.set('view engine', 'ejs');
 
