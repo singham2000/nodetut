@@ -5,7 +5,7 @@ require("dotenv").config();
 const { result } = require("lodash");
 
 const blogRoutes = require("./Routes/blogRoutes");
-
+const aboutRoutes = require("./Routes/aboutRoutes");
 // connect mongodb
 const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.sbunmxg.mongodb.net/blogs?retryWrites=true&w=majority`;
 
@@ -27,13 +27,8 @@ try {
 }
 
 app.use(blogRoutes);
+app.use(aboutRoutes);
 
-app.get("/about", (req, res) => {
-  res.render("about", { title: "About" });
-});
-app.get("/aboutus", (req, res) => {
-  res.redirect("/about");
-});
 app.use((req, res) => {
   res.status(404).render("404", { title: "404 Error" });
 });
