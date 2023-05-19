@@ -25,7 +25,7 @@
                     <p class="card-text">
                         <%= blog.blogBody %>
                     </p>
-                    <a data-doc="<%= blog._id%>" class="btn btn-primary">Delete blog</a>
+                    <a data-doc="<%= blog._id%>" id="delete" class="delete btn btn-danger ">Delete blog</a>
                 </div>
                 <div class="card-footer text-body-secondary">
                     2 days ago
@@ -33,6 +33,19 @@
             </div>
         </center>
         <%- include('../partials/footer.ejs')%>
+            <script>
+                const del = document.querySelector('a.delete');
+                del.addEventListener('click', (e) => {
+                    const endpoint = `/blogs/${del.dataset.doc}`;
+                    fetch(endpoint,
+                        { method: 'DELETE' },
+                    ).then((res) => { console.log(res.json()) }).then((res) => {
+                        console.log({res})
+                        // window.location.replace('/');
+
+                    }).catch((e) => console.log(e));
+                })
+            </script>
 </body>
 
 </html>
