@@ -11,6 +11,7 @@ const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWOR
 
 app.set("view engine", "ejs");
 
+
 //encoders
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
